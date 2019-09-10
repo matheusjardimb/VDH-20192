@@ -37,7 +37,7 @@ Example from https://www.highcharts.com/demo/scatter
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 800px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height: 400px; max-width: 1200px; margin: 0 auto"></div>
 
 <script type="text/javascript">
     const HOURS_DAY = 24;
@@ -140,8 +140,10 @@ Example from https://www.highcharts.com/demo/scatter
                 },
                 tooltip: {
                     headerFormat: '<b>{series.name}</b><br>',
-                    // TODO Precisa formatar a data
-                    pointFormat: 'às {point.x} com {point.y} vítimas'
+                    // pointFormat: 'às {point.x} com {point.y} vítimas'
+                    pointFormatter: function () {
+                        return `às ${get_str(this.x)} com ${this.y} vítima(s)`;
+                    }
                 }
             }
         },
@@ -168,6 +170,10 @@ Example from https://www.highcharts.com/demo/scatter
             // color: 'rgba(119, 152, 191, .5)',
             data: [
                 [get_idx(QUA, 20, 19), 0],
+                [get_idx(QUA, 21, 19), 1],
+                [get_idx(QUA, 22, 19), 2],
+                [get_idx(QUA, 21, 19), 3],
+                [get_idx(QUA, 20, 19), 4],
             ]
         },
         ]
