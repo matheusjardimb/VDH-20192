@@ -44,19 +44,27 @@ Example from https://www.highcharts.com/demo/scatter
     const HOUR_MIN = 60;
     const DAY_MIN = HOUR_MIN * HOURS_DAY;
 
+    const DOM = 0;
+    const SEG = 1;
+    const TER = 2;
+    const QUA = 3;
+    const QUI = 4;
+    const SEX = 5;
+    const SAB = 6;
+
     // week_day = int[0..6]
     // hour = int[0..23]
     // min = int[0..59]
     // week_start_on = sunday
 
     function week_day_to_str(week_day) {
-        if (week_day === 0) return 'Dom';
-        if (week_day === 1) return 'Seg';
-        if (week_day === 2) return 'Ter';
-        if (week_day === 3) return 'Qua';
-        if (week_day === 4) return 'Qui';
-        if (week_day === 5) return 'Sex';
-        if (week_day === 6) return 'Sáb';
+        if (week_day === DOM) return 'Dom';
+        if (week_day === SEG) return 'Seg';
+        if (week_day === TER) return 'Ter';
+        if (week_day === QUA) return 'Qua';
+        if (week_day === QUI) return 'Qui';
+        if (week_day === SEX) return 'Sex';
+        if (week_day === SAB) return 'Sáb';
     }
 
     function get_idx(week_day, hour, min) {
@@ -141,25 +149,25 @@ Example from https://www.highcharts.com/demo/scatter
             name: 'Apenas carro(s)',
             // color: 'rgba(223, 83, 83, .5)',
             data: [
-                [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                [get_idx(DOM, 0, 10), 1],
             ]
         }, {
             name: 'Apenas moto(s)',
             // color: 'rgba(119, 152, 191, .5)',
             data: [
-                [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                [get_idx(SEG, 12, 24), 2],
             ]
         }, {
             name: 'Apenas caminhão(ões)',
             // color: 'rgba(119, 152, 191, .5)',
             data: [
-                [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                [get_idx(TER, 3, 43), 3],
             ]
         }, {
             name: 'Carro(s) e moto(s)',
             // color: 'rgba(119, 152, 191, .5)',
             data: [
-                [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],
+                [get_idx(QUA, 20, 19), 0],
             ]
         },
         ]
