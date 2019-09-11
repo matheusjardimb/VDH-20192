@@ -6,7 +6,8 @@ Example from https://www.highcharts.com/demo/scatter
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
-<div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>
+<div id="container" style="min-width: 310px; height: 500px; max-width: 900px; margin: 0 auto"></div>
+<!--<div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>-->
 
 <script type="text/javascript">
     const HOURS_DAY = 24;
@@ -48,6 +49,8 @@ Example from https://www.highcharts.com/demo/scatter
     function get_str(idx) {
         if (idx < 0) return '--';
 
+        idx = Math.trunc(idx);
+
         const week_day = Math.trunc(idx / DAY_MIN);
         if (week_day > SAB) return '--';
         const week_day_str = week_day_to_str(week_day);
@@ -57,6 +60,18 @@ Example from https://www.highcharts.com/demo/scatter
 
         const min = aux_idx - (hour * HOUR_MIN);
         return `${week_day_str} ${zero_pad(hour)}:${zero_pad(min)}`;
+    }
+
+    function marker_options(radius) {
+        return {
+            radius: radius || 10,
+            // states: {
+            //     hover: {
+            //         enabled: true,
+            //         lineColor: 'rgb(100,100,100)'
+            //     }
+            // }
+        }
     }
 
     Highcharts.chart('container', {
@@ -88,16 +103,13 @@ Example from https://www.highcharts.com/demo/scatter
             }
         },
         yAxis: {
-            title: {
-                text: 'Fatalidades'
-            }
+            title: {text: 'Fatalidades'}
         },
         legend: {
             layout: 'vertical',
             align: 'left',
             verticalAlign: 'top',
-            x: 100,
-            y: 70,
+            x: 100, y: 70,
             floating: true,
             backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
             borderWidth: 1
@@ -124,7 +136,8 @@ Example from https://www.highcharts.com/demo/scatter
                     headerFormat: '<b>{series.name}</b><br>',
                     // pointFormat: 'às {point.x} com {point.y} vitimas'
                     pointFormatter: function () {
-                        return `às ${get_str(this.x)} com ${this.y} vitima(s)`;
+                        const r = this.options.marker ? this.options.marker.radius : 1;
+                        return `${r} vezes às ${get_str(this.x)} com ${this.y} vitima(s)`;
                     }
                 }
             }
