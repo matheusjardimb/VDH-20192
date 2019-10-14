@@ -8,26 +8,58 @@ Example from https://www.highcharts.com/demo/scatter
 <script src="https://code.highcharts.com/modules/export-data.js"></script>
 <script src="https://code.highcharts.com/modules/accessibility.js"></script>
 
+<script src="js/utils.js"></script>
+
 <div id="container" style="min-width: 310px; height: 500px; max-width: 900px; margin: 0 auto"></div>
 <!--<div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>-->
 
 <script type="text/javascript">
-    const HOURS_DAY = 24;
-    const HOUR_MIN = 60;
-    const DAY_MIN = HOUR_MIN * HOURS_DAY;
-
-    const DOM = 0;
-    const SEG = 1;
-    const TER = 2;
-    const QUA = 3;
-    const QUI = 4;
-    const SEX = 5;
-    const SAB = 6;
-
-    // week_day = int[0..6]
-    // hour = int[0..23]
-    // min = int[0..59]
-    // week_start_on = sunday
+    const cols = {
+        0: "ID",
+        1: "LONGITUDE",
+        2: "LATITUDE",
+        3: "LOG1",
+        4: "LOG2",
+        5: "PREDIAL1",
+        6: "LOCAL",
+        7: "TIPO_ACID",
+        8: "LOCAL_VIA",
+        9: "QUEDA_ARR",
+        10: "DATA",
+        11: "DATA_HORA",
+        12: "DIA_SEM",
+        13: "HORA",
+        14: "FERIDOS",
+        15: "FERIDOS_GR",
+        16: "MORTES",
+        17: "MORTE_POST",
+        18: "FATAIS",
+        19: "AUTO",
+        20: "TAXI",
+        21: "LOTACAO",
+        22: "ONIBUS_URB",
+        23: "ONIBUS_MET",
+        24: "ONIBUS_INT",
+        25: "CAMINHAO",
+        26: "MOTO",
+        27: "CARROCA",
+        28: "BICICLETA",
+        29: "OUTRO",
+        30: "TEMPO",
+        31: "NOITE_DIA",
+        32: "FONTE",
+        33: "BOLETIM",
+        34: "REGIAO",
+        35: "DIA",
+        36: "MES",
+        37: "ANO",
+        38: "FX_HORA",
+        39: "CONT_ACID",
+        40: "CONT_VIT",
+        41: "UPS",
+        42: "CONSORCIO",
+        43: "CORREDOR",
+    };
 
     function week_day_to_str(week_day) {
         if (week_day === DOM) return 'Dom';
@@ -42,11 +74,6 @@ Example from https://www.highcharts.com/demo/scatter
     function get_idx(week_day, hour, min) {
         return min + (hour * HOUR_MIN) + (week_day * DAY_MIN);
     }
-
-    function zero_pad(val) {
-        return ("00" + val).substr(-2, 2);
-    }
-
 
     function get_str(idx) {
         if (idx < 0) return '--';
@@ -161,32 +188,6 @@ Example from https://www.highcharts.com/demo/scatter
             borderWidth: 1
         },
         plotOptions: {
-            // scatter: {
-            //     marker: {
-            //         radius: 5,
-            //         states: {
-            //             hover: {
-            //                 enabled: true,
-            //                 lineColor: 'rgb(100,100,100)'
-            //             }
-            //         }
-            //     },
-            //     states: {
-            //         hover: {
-            //             marker: {
-            //                 enabled: false
-            //             }
-            //         }
-            //     },
-            //     tooltip: {
-            //         headerFormat: '<b>{series.name}</b><br>',
-            //         // pointFormat: 'às {point.x} com {point.y} vitimas'
-            //         pointFormatter: function () {
-            //             const r = this.options.marker ? this.options.marker.radius : 1;
-            //             return `${r} vezes às ${get_str(this.x)} com ${this.y} vitima(s)`;
-            //         }
-            //     }
-            // }
             series: {
                 dataLabels: {
                     enabled: true,
@@ -213,42 +214,6 @@ Example from https://www.highcharts.com/demo/scatter
                     {x: 180.8, y: 291.5, z: 15.8, name: 'FI', country: 'Finland'},
                 ]
             },
-            // {
-            //     name: 'Apenas moto(s)',
-            //     // color: 'rgba(119, 152, 191, .5)',
-            //     data: [
-            //         [get_idx(SEG, 12, 24), 2],
-            //     ]
-            // }, {
-            //     name: 'Apenas caminhao(oes)',
-            //     // color: 'rgba(119, 152, 191, .5)',
-            //     data: [
-            //         [get_idx(TER, 3, 43), 3],
-            //     ]
-            // }, {
-            //     name: 'Carro(s) e moto(s)',
-            //     // color: 'rgba(119, 152, 191, .5)',
-            //     data: [
-            //         [get_idx(QUA, 20, 19), 0],
-            //         [get_idx(QUA, 21, 19), 1],
-            //         [get_idx(QUA, 22, 19), 2],
-            //         [get_idx(QUA, 21, 19), 3],
-            //         [get_idx(QUA, 20, 19), 4],
-            //         [get_idx(SAB, 23, 59), 5],
-            //     ]
-            // },
         ],
-
-
-        // tooltip: {
-        //     useHTML: true,
-        //     headerFormat: '<table>',
-        //     pointFormat: '<tr><th colspan="2"><h3>{point.country}</h3></th></tr>' +
-        //         '<tr><th>Fat intake:</th><td>{point.x}g</td></tr>' +
-        //         '<tr><th>Sugar intake:</th><td>{point.y}g</td></tr>' +
-        //         '<tr><th>Obesity (adults):</th><td>{point.z}%</td></tr>',
-        //     footerFormat: '</table>',
-        //     followPointer: true
-        // },
     });
 </script>
