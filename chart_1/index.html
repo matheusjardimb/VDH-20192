@@ -2,7 +2,7 @@
 Example from https://www.highcharts.com/demo/scatter
 -->
 
-<script src="js/utils.js"></script>
+<script src="../js/utils.js"></script>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
@@ -65,12 +65,13 @@ Example from https://www.highcharts.com/demo/scatter
             series: series_data,
             tooltip: {
                 formatter: function () {
-                    return get_str(this.point.x) + ', ' + this.point.count + ' vezes com ' + this.point.y + ' fatalidades';
+                    let pt = this.point;
+                    let time = get_str(pt.x);
+                    return time + ', ' + pt.count + ' vezes com ' + pt.y + ' fatalidades (' + pt.count + ', ' + pt.y + ', ' + pt.z + ')';
                 },
             }
         });
     }
-
 
     const input = document.getElementById("select_file");
     input.addEventListener("change", function () {
@@ -85,5 +86,4 @@ Example from https://www.highcharts.com/demo/scatter
             reader.readAsBinaryString(myFile);
         }
     });
-
 </script>
