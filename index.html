@@ -48,15 +48,15 @@ Example from https://www.highcharts.com/demo/scatter
                 },
                 maxPadding: 0.2,
             },
-            legend: {
-                layout: 'vertical',
-                align: 'left',
-                verticalAlign: 'top',
-                x: 100, y: 70,
-                floating: true,
-                backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
-                borderWidth: 1
-            },
+            // legend: {
+                // layout: 'vertical',
+                // align: 'left',
+                // verticalAlign: 'top',
+                // x: 100, y: 70,
+                // floating: true,
+                // backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                // borderWidth: 1
+            // },
             plotOptions: {
                 series: {
                     dataLabels: {
@@ -69,14 +69,14 @@ Example from https://www.highcharts.com/demo/scatter
             tooltip: {
                 // pointFormat: '{point.country}',
                 formatter: function () {
-                    return get_str(this.point.x) + ', ' + this.point.z + ' vezes com ' + this.point.y + ' fatalidades';
+                    return get_str(this.point.x) + ', ' + this.point.count + ' vezes com ' + this.point.y + ' fatalidades';
                 },
                 followPointer: true
             }
         });
     }
 
-    $.get('dataset/2016/acidentes-2016.csv.json', function (json) {
+    $.get('dataset/results.json', function (json) {
         load_graph(json['series']);
     });
 </script>
