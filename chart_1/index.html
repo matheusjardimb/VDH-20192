@@ -2,14 +2,6 @@
 Example from https://www.highcharts.com/demo/scatter
 -->
 
-<script src="../js/utils.js"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/boost.js"></script>
-<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
 
 <label>
     Selecione o arquivo:
@@ -20,70 +12,25 @@ Example from https://www.highcharts.com/demo/scatter
 
 <script type="text/javascript">
     function load_graph(series_data) {
-        Highcharts.chart('container', {
-            chart: {
-                type: 'bubble',
-                plotBorderWidth: 1,
-                zoomType: 'xy',
-                animation: false
+        hc_config['title'] = {text: 'Vitimas fatais ao longo da semana'};
+        hc_config['yAxis']['title'] = {text: 'Fatalidades'};
+        hc_config['series'] = series_data;
+        hc_config['tooltip'] = {
+            formatter: function () {
+                let pt = this.point;
+                let time = get_str(pt.x);
+                return time + ', ' + pt.count + ' vezes com ' + pt.y + ' fatalidades (' + pt.count + ', ' + pt.y + ', ' + pt.z + ')';
             },
-            title: {text: 'Vitimas fatais ao longo da semana'},
-            subtitle: {
-                text: 'Fonte: <a target="_blank" href="http://datapoa.com.br/dataset/acidentes-de-transito/">DataPoa</a>'
-            },
-            xAxis: {
-                title: {
-                    enabled: true,
-                    text: 'Momento da semana'
-                },
-                startOnTick: true,
-                endOnTick: true,
-                showLastLabel: true,
-                labels: {
-                    formatter: function () {
-                        return get_str(this.value);
-                    }
-                }
-            },
-            yAxis: {
-                title: {text: 'Fatalidades'},
-                startOnTick: false,
-                endOnTick: false,
-                labels: {
-                    format: '{value}'
-                },
-                maxPadding: 0.2,
-            },
-            plotOptions: {
-                series: {
-                    dataLabels: {
-                        enabled: true,
-                        format: '{point.name}'
-                    }
-                }
-            },
-            series: series_data,
-            tooltip: {
-                formatter: function () {
-                    let pt = this.point;
-                    let time = get_str(pt.x);
-                    return time + ', ' + pt.count + ' vezes com ' + pt.y + ' fatalidades (' + pt.count + ', ' + pt.y + ', ' + pt.z + ')';
-                },
-            }
-        });
+        };
+        Highcharts.chart('container', hc_config);
     }
-
-    const input = document.getElementById("select_file");
-    input.addEventListener("change", function () {
-        if (this.files && this.files[0]) {
-            const myFile = this.files[0];
-            const reader = new FileReader();
-            reader.addEventListener('load', function (e) {
-                const textContent = e.target.result;
-                const json = JSON.parse(textContent);
-                load_graph(json['series'])
-            });
-            reader.readAsBinaryString(myFile);
-        }
-    });
 </script>
+
+<script src="../js/utils.js"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/boost.js"></script>
+<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->

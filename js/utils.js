@@ -50,14 +50,65 @@ function get_str(idx) {
     return `${week_day_str} ${zero_pad(hour)}:${zero_pad(min)}`;
 }
 
-// function marker_options(radius) {
-//     return {
-//         radius: radius || 10,
-//         // states: {
-//         //     hover: {
-//         //         enabled: true,
-//         //         lineColor: 'rgb(100,100,100)'
-//         //     }
-//         // }
-//     }
-// }
+let hc_config = {
+    chart: {
+        type: 'bubble',
+        plotBorderWidth: 1,
+        zoomType: 'xy',
+        animation: false
+    },
+    subtitle: {
+        text: 'Fonte: <a target="_blank" href="http://datapoa.com.br/dataset/acidentes-de-transito/">DataPoa</a>'
+    },
+    xAxis: {
+        title: {
+            enabled: true,
+            text: 'Momento da semana'
+        },
+        startOnTick: true,
+        endOnTick: true,
+        showLastLabel: true,
+        labels: {
+            formatter: function () {
+                return get_str(this.value);
+            }
+        }
+    },
+    yAxis: {
+        startOnTick: false,
+        endOnTick: false,
+        labels: {
+            format: '{value}'
+        },
+        maxPadding: 0.2,
+    },
+    plotOptions: {
+        series: {
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    tooltip: {
+        formatter: function () {
+            let pt = this.point;
+            let time = get_str(pt.x);
+            return time + '(' + pt.count + ', ' + pt.y + ', ' + pt.z + ')';
+        },
+    }
+};
+
+const input = document.getElementById("select_file");
+input.addEventListener("change", function () {
+    if (this.files && this.files[0]) {
+        const myFile = this.files[0];
+        const reader = new FileReader();
+        reader.addEventListener('load', function (e) {
+            const textContent = e.target.result;
+            const json = JSON.parse(textContent);
+            load_graph(json['series'])
+        });
+        reader.readAsBinaryString(myFile);
+    }
+});

@@ -3,24 +3,14 @@ import csv
 from base import *
 
 
-# def update_rows(row_data, x, deaths):
-#     res = find_indices(row_data, lambda e: e['x'] == x and e['y'] == deaths)
-#     if len(res):
-#         i, el = res[0]
-#         row_data[i]['y'] = el['y'] + 1
-#         row_data[i]['count'] = el['count'] + 1
-#     else:
-#         row_data.append({'x': x, 'z': deaths, 'y': 1, 'count': 1})
-
-
-def update_rows(row_data, x, deaths):
-    res = find_indices(row_data, lambda e: e['x'] == x and e['z'] == deaths)
+def update_rows(row_data, x, y):
+    res = find_indices(row_data, lambda e: e['x'] == x and e['y'] == y)
     if len(res):
         i, el = res[0]
-        row_data[i]['y'] = el['y'] + 1
+        row_data[i]['z'] = el['z'] + 1
         row_data[i]['count'] = el['count'] + 1
     else:
-        row_data.append({'x': x, 'y': 1, 'z': deaths, 'count': 1})
+        row_data.append({'x': x, 'y': y, 'z': 1, 'count': 1})
 
 
 def generate_json(files, add_general_data, group_by_minutes, only_fatals):
