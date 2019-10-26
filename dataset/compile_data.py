@@ -14,55 +14,6 @@ QUI = 4
 SEX = 5
 SAB = 6
 
-data_by_year = {
-    '2016/acidentes-2016.csv': [
-        'ID', 'LONGITUDE', 'LATITUDE', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR',
-        'DATA', 'DATA_HORA', 'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO',
-        'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA',
-        'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID',
-        'CONT_VIT', 'UPS', 'CONSORCIO', 'CORREDOR',
-    ],
-    '2015/acidentes-2015.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
-        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
-        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
-        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
-        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
-    ],
-    '2014/acidentes-2014.csv': [
-        'ID', 'LOCAL_VIA', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
-        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
-        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
-        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
-        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
-    ],
-    '2013/acidentes-2013.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DIA_SEM',
-        'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB',
-        'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE',
-        'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'CONSORCIO', 'CORREDOR',
-        'LONGITUDE', 'LATITUDE',
-    ],
-    '2012/acidentes-2012.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
-    '2011/acidentes-2011.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
-    '2010/acidentes-2010.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
-}
-
 
 def get_weekday_idx(week_day):
     if week_day == 'DOMINGO':
@@ -138,11 +89,11 @@ vehicles = {
 }
 
 
-def generate_json(data, add_general_data):
+def generate_json(files, add_general_data, group_by_minutes, only_fatals):
     series = []
     general_data = []
 
-    for file_name, columns in data.items():
+    for file_name, columns in files.items():
         invalid_row = 0
 
         year = file_name.split('/')[0]
@@ -164,12 +115,17 @@ def generate_json(data, add_general_data):
                         invalid_row += 1
                         continue  # Ignore rows without time
 
+                    y = int(row[FATAIS_idx])
+                    if only_fatals and not y:
+                        continue
+
                     if ' ' in time:
                         time = time.split(' ')[1]  # some csv have '20130101 02:10', so we're removing date
                     hour, minute = time.split(':')
-                    x = get_idx(get_weekday_idx(row[DIA_SEM_idx]), int(hour), int(minute))
-
-                    y = int(row[FATAIS_idx])
+                    minutes = int(minute)
+                    if group_by_minutes:
+                        minutes = minutes // group_by_minutes * group_by_minutes
+                    x = get_idx(get_weekday_idx(row[DIA_SEM_idx]), int(hour), minutes)
 
                     # if VEHICLE_idx:
                     #     has_v = row[VEHICLE_idx]
@@ -192,8 +148,67 @@ def generate_json(data, add_general_data):
     if add_general_data:
         series.append(get_series_item(general_data, 'Geral'))
 
-    file_object = open('results.json', 'w')
+    output_name = \
+        '__data=' + ','.join([x.split('/')[0][2:4] for x in files.keys()]) + \
+        '__add_general_data=' + str(add_general_data) + \
+        '__group_by_minutes=' + str(group_by_minutes) + \
+        '__only_fatals=' + str(only_fatals) + \
+        '.json'
+    file_object = open(output_name, 'w')
     json.dump({'series': series}, file_object)
 
 
-generate_json(data_by_year, False)
+data = {
+    '2016/acidentes-2016.csv': [
+        'ID', 'LONGITUDE', 'LATITUDE', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR',
+        'DATA', 'DATA_HORA', 'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO',
+        'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA',
+        'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID',
+        'CONT_VIT', 'UPS', 'CONSORCIO', 'CORREDOR',
+    ],
+    '2015/acidentes-2015.csv': [
+        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
+        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
+        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
+        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
+        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
+    ],
+    '2014/acidentes-2014.csv': [
+        'ID', 'LOCAL_VIA', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
+        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
+        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
+        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
+        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
+    ],
+    '2013/acidentes-2013.csv': [
+        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DIA_SEM',
+        'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB',
+        'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA',
+        'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'CONSORCIO',
+        'CORREDOR', 'LONGITUDE', 'LATITUDE',
+    ],
+    '2012/acidentes-2012.csv': [
+        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
+        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
+        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
+        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
+    ],
+    '2011/acidentes-2011.csv': [
+        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
+        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
+        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
+        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
+    ],
+    '2010/acidentes-2010.csv': [
+        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
+        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
+        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
+        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
+    ],
+}
+generate_json(
+    files=data,  # which files to consider
+    add_general_data=True,  # whether should generate 'general' series
+    group_by_minutes=30,  # group events by minutes; None disables it
+    only_fatals=False  # ignore non-fatal accidents
+)
