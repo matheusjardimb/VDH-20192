@@ -2,218 +2,116 @@
 Example from https://www.highcharts.com/demo/scatter
 -->
 
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://code.highcharts.com/modules/export-data.js"></script>
-<script src="https://code.highcharts.com/modules/accessibility.js"></script>
-
 <script src="js/utils.js"></script>
 
-<div id="container" style="min-width: 310px; height: 500px; max-width: 900px; margin: 0 auto"></div>
-<!--<div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+<script src="https://code.highcharts.com/modules/boost.js"></script>
+<!--<script src="https://code.highcharts.com/modules/exporting.js"></script>-->
+
+<div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>
 
 <script type="text/javascript">
-    const cols = {
-        0: "ID",
-        1: "LONGITUDE",
-        2: "LATITUDE",
-        3: "LOG1",
-        4: "LOG2",
-        5: "PREDIAL1",
-        6: "LOCAL",
-        7: "TIPO_ACID",
-        8: "LOCAL_VIA",
-        9: "QUEDA_ARR",
-        10: "DATA",
-        11: "DATA_HORA",
-        12: "DIA_SEM",
-        13: "HORA",
-        14: "FERIDOS",
-        15: "FERIDOS_GR",
-        16: "MORTES",
-        17: "MORTE_POST",
-        18: "FATAIS",
-        19: "AUTO",
-        20: "TAXI",
-        21: "LOTACAO",
-        22: "ONIBUS_URB",
-        23: "ONIBUS_MET",
-        24: "ONIBUS_INT",
-        25: "CAMINHAO",
-        26: "MOTO",
-        27: "CARROCA",
-        28: "BICICLETA",
-        29: "OUTRO",
-        30: "TEMPO",
-        31: "NOITE_DIA",
-        32: "FONTE",
-        33: "BOLETIM",
-        34: "REGIAO",
-        35: "DIA",
-        36: "MES",
-        37: "ANO",
-        38: "FX_HORA",
-        39: "CONT_ACID",
-        40: "CONT_VIT",
-        41: "UPS",
-        42: "CONSORCIO",
-        43: "CORREDOR",
-    };
 
-    function week_day_to_str(week_day) {
-        if (week_day === DOM) return 'Dom';
-        if (week_day === SEG) return 'Seg';
-        if (week_day === TER) return 'Ter';
-        if (week_day === QUA) return 'Qua';
-        if (week_day === QUI) return 'Qui';
-        if (week_day === SEX) return 'Sex';
-        if (week_day === SAB) return 'Sab';
-    }
-
-    function get_idx(week_day, hour, min) {
-        return min + (hour * HOUR_MIN) + (week_day * DAY_MIN);
-    }
-
-    function get_str(idx) {
-        if (idx < 0) return '--';
-
-        idx = Math.trunc(idx);
-
-        const week_day = Math.trunc(idx / DAY_MIN);
-        if (week_day > SAB) return '--';
-        const week_day_str = week_day_to_str(week_day);
-
-        const aux_idx = idx - (week_day * DAY_MIN);
-        const hour = Math.trunc(aux_idx / HOUR_MIN);
-
-        const min = aux_idx - (hour * HOUR_MIN);
-        return `${week_day_str} ${zero_pad(hour)}:${zero_pad(min)}`;
-    }
-
-    function marker_options(radius) {
-        return {
-            radius: radius || 10,
-            // states: {
-            //     hover: {
-            //         enabled: true,
-            //         lineColor: 'rgb(100,100,100)'
-            //     }
-            // }
-        }
-    }
-
-    Highcharts.chart('container', {
-        // chart: {
-        //     type: 'scatter',
-        //     zoomType: 'xy'
-        // },
-        chart: {
-            type: 'bubble',
-            plotBorderWidth: 1,
-            zoomType: 'xy'
-        },
-        accessibility: {
-            description: 'Grafico de dispersao que exibe em x o momento da semana e em y o numero de vitimas fatais'
-        },
-        title: {
-            text: 'Vitimas fatais ao longo da semana'
-        },
-        subtitle: {
-            text: 'Fonte: <a target="_blank" href="http://datapoa.com.br/dataset/acidentes-de-transito/">DataPoa</a>'
-        },
-        xAxis: {
-            gridLineWidth: 1,
-            plotLines: [{
-                color: 'black',
-                dashStyle: 'dot',
-                width: 2,
-                value: 65,
-                label: {
-                    rotation: 0,
-                    y: 15,
-                    style: {
-                        fontStyle: 'italic'
-                    },
-                    text: 'Safe fat intake 65g/day'
-                },
-                zIndex: 3
-            }],
-
-            title: {
-                enabled: true,
-                text: 'Momento da semana'
+    function load_graph(series_data) {
+        Highcharts.chart('container', {
+            // chart: {
+            //     type: 'scatter',
+            //     zoomType: 'xy'
+            // },
+            chart: {
+                type: 'bubble',
+                plotBorderWidth: 1,
+                zoomType: 'xy'
             },
-            startOnTick: true,
-            endOnTick: true,
-            showLastLabel: true,
-            labels: {
-                formatter: function () {
-                    return get_str(this.value);
-                }
-            }
-        },
-        yAxis: {
-            title: {text: 'Fatalidades'},
-
-            startOnTick: false,
-            endOnTick: false,
-            labels: {
-                format: '{value} gr'
+            title: {text: 'Vitimas fatais ao longo da semana'},
+            subtitle: {
+                text: 'Fonte: <a target="_blank" href="http://datapoa.com.br/dataset/acidentes-de-transito/">DataPoa</a>'
             },
-            maxPadding: 0.2,
-            plotLines: [{
-                color: 'black',
-                dashStyle: 'dot',
-                width: 2,
-                value: 50,
-                label: {
-                    align: 'right',
-                    style: {
-                        fontStyle: 'italic'
-                    },
-                    text: 'Safe sugar intake 50g/day',
-                    x: -10
-                },
-                zIndex: 3
-            }]
-        },
-        legend: {
-            layout: 'vertical',
-            align: 'left',
-            verticalAlign: 'top',
-            x: 100, y: 70,
-            floating: true,
-            backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
-            borderWidth: 1
-        },
-        plotOptions: {
-            series: {
-                dataLabels: {
+            xAxis: {
+                gridLineWidth: 1,
+                plotLines: [
+                    // {
+                    //     color: 'black',
+                    //     dashStyle: 'dot',
+                    //     width: 2,
+                    //     value: 65,
+                    //     label: {
+                    //         rotation: 0,
+                    //         y: 15,
+                    //         style: {
+                    //             fontStyle: 'italic'
+                    //         },
+                    //         text: 'Safe fat intake 65g/day'
+                    //     },
+                    //     zIndex: 3
+                    // }
+                ],
+
+                title: {
                     enabled: true,
-                    format: '{point.name}'
+                    text: 'Momento da semana'
+                },
+                startOnTick: true,
+                endOnTick: true,
+                showLastLabel: true,
+                labels: {
+                    formatter: function () {
+                        return get_str(this.value);
+                    }
                 }
-            }
-        },
-        series: [
-            {
-                name: 'Apenas carro(s)',
-                // color: 'rgba(223, 83, 83, .5)',
-                data: [
-                    {x: 95, y: 95, z: 13.8, name: 'BE', country: 'Belgium'},
-                    {x: 86.5, y: 102.9, z: 14.7, name: 'DE', country: 'Germany'},
-                    {x: 80.8, y: 91.5, z: 15.8, name: 'FI', country: 'Finland'},
+            },
+            yAxis: {
+                title: {text: 'Fatalidades'},
+
+                startOnTick: false,
+                endOnTick: false,
+                labels: {
+                    format: '{value}'
+                },
+                maxPadding: 0.2,
+                plotLines: [
+                    //     {
+                    //     color: 'black',
+                    //     dashStyle: 'dot',
+                    //     width: 2,
+                    //     value: 50,
+                    //     label: {
+                    //         align: 'right',
+                    //         style: {
+                    //             fontStyle: 'italic'
+                    //         },
+                    //         text: 'Safe sugar intake 50g/day',
+                    //         x: -10
+                    //     },
+                    //     zIndex: 3
+                    // }
                 ]
             },
-            {
-                name: 'Apenas moto(s)',
-                // color: 'rgba(223, 83, 83, .5)',
-                data: [
-                    {x: 195, y: 295, z: 13.8, name: 'BE', country: 'Belgium'},
-                    {x: 186.5, y: 2102.9, z: 14.7, name: 'DE', country: 'Germany'},
-                    {x: 180.8, y: 291.5, z: 15.8, name: 'FI', country: 'Finland'},
-                ]
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                verticalAlign: 'top',
+                x: 100, y: 70,
+                floating: true,
+                backgroundColor: Highcharts.defaultOptions.chart.backgroundColor,
+                borderWidth: 1
             },
-        ],
+            plotOptions: {
+                series: {
+                    dataLabels: {
+                        enabled: true,
+                        format: '{point.name}'
+                    }
+                }
+            },
+            series: series_data
+        });
+    }
+
+    $.get('dataset/2016/acidentes-2016.csv.json', function (json) {
+        load_graph(json['series']);
     });
 </script>

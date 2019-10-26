@@ -25,3 +25,45 @@ function get_csv_path() {
     // return domain + base_path + 'dataset/test.csv';
     return 'file:///home/matheusjardimb/workspace/VDH-20192/dataset/test.csv';
 }
+
+function week_day_to_str(week_day) {
+    if (week_day === DOM) return 'Dom';
+    if (week_day === SEG) return 'Seg';
+    if (week_day === TER) return 'Ter';
+    if (week_day === QUA) return 'Qua';
+    if (week_day === QUI) return 'Qui';
+    if (week_day === SEX) return 'Sex';
+    if (week_day === SAB) return 'Sab';
+}
+
+function get_idx(week_day, hour, min) {
+    return min + (hour * HOUR_MIN) + (week_day * DAY_MIN);
+}
+
+function get_str(idx) {
+    if (idx < 0) return '--';
+
+    idx = Math.trunc(idx);
+
+    const week_day = Math.trunc(idx / DAY_MIN);
+    if (week_day > SAB) return '--';
+    const week_day_str = week_day_to_str(week_day);
+
+    const aux_idx = idx - (week_day * DAY_MIN);
+    const hour = Math.trunc(aux_idx / HOUR_MIN);
+
+    const min = aux_idx - (hour * HOUR_MIN);
+    return `${week_day_str} ${zero_pad(hour)}:${zero_pad(min)}`;
+}
+
+function marker_options(radius) {
+    return {
+        radius: radius || 10,
+        // states: {
+        //     hover: {
+        //         enabled: true,
+        //         lineColor: 'rgb(100,100,100)'
+        //     }
+        // }
+    }
+}
