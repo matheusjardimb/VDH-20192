@@ -10,6 +10,7 @@ const QUI = 4;
 const SEX = 5;
 const SAB = 6;
 
+// NOTES
 // week_day = int[0..6]
 // hour = int[0..23]
 // min = int[0..59]
@@ -17,13 +18,6 @@ const SAB = 6;
 
 function zero_pad(val) {
     return ("00" + val).substr(-2, 2);
-}
-
-function get_csv_path() {
-    // let domain = window.location.origin;
-    // let base_path = window.location.pathname.split("/").slice(0, -1).join("/") + "/";
-    // return domain + base_path + 'dataset/test.csv';
-    return 'file:///home/matheusjardimb/workspace/VDH-20192/dataset/test.csv';
 }
 
 function week_day_to_str(week_day) {
@@ -56,14 +50,14 @@ function get_str(idx) {
     return `${week_day_str} ${zero_pad(hour)}:${zero_pad(min)}`;
 }
 
-function marker_options(radius) {
-    return {
-        radius: radius || 10,
-        // states: {
-        //     hover: {
-        //         enabled: true,
-        //         lineColor: 'rgb(100,100,100)'
-        //     }
-        // }
-    }
-}
+// function marker_options(radius) {
+//     return {
+//         radius: radius || 10,
+//         // states: {
+//         //     hover: {
+//         //         enabled: true,
+//         //         lineColor: 'rgb(100,100,100)'
+//         //     }
+//         // }
+//     }
+// }

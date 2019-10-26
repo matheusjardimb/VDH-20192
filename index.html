@@ -14,13 +14,8 @@ Example from https://www.highcharts.com/demo/scatter
 <div id="container" style="min-width: 310px; height: 800px; max-width: 1500px; margin: 0 auto"></div>
 
 <script type="text/javascript">
-
     function load_graph(series_data) {
         Highcharts.chart('container', {
-            // chart: {
-            //     type: 'scatter',
-            //     zoomType: 'xy'
-            // },
             chart: {
                 type: 'bubble',
                 plotBorderWidth: 1,
@@ -31,25 +26,6 @@ Example from https://www.highcharts.com/demo/scatter
                 text: 'Fonte: <a target="_blank" href="http://datapoa.com.br/dataset/acidentes-de-transito/">DataPoa</a>'
             },
             xAxis: {
-                gridLineWidth: 1,
-                plotLines: [
-                    // {
-                    //     color: 'black',
-                    //     dashStyle: 'dot',
-                    //     width: 2,
-                    //     value: 65,
-                    //     label: {
-                    //         rotation: 0,
-                    //         y: 15,
-                    //         style: {
-                    //             fontStyle: 'italic'
-                    //         },
-                    //         text: 'Safe fat intake 65g/day'
-                    //     },
-                    //     zIndex: 3
-                    // }
-                ],
-
                 title: {
                     enabled: true,
                     text: 'Momento da semana'
@@ -65,30 +41,12 @@ Example from https://www.highcharts.com/demo/scatter
             },
             yAxis: {
                 title: {text: 'Fatalidades'},
-
                 startOnTick: false,
                 endOnTick: false,
                 labels: {
                     format: '{value}'
                 },
                 maxPadding: 0.2,
-                plotLines: [
-                    //     {
-                    //     color: 'black',
-                    //     dashStyle: 'dot',
-                    //     width: 2,
-                    //     value: 50,
-                    //     label: {
-                    //         align: 'right',
-                    //         style: {
-                    //             fontStyle: 'italic'
-                    //         },
-                    //         text: 'Safe sugar intake 50g/day',
-                    //         x: -10
-                    //     },
-                    //     zIndex: 3
-                    // }
-                ]
             },
             legend: {
                 layout: 'vertical',
@@ -107,7 +65,14 @@ Example from https://www.highcharts.com/demo/scatter
                     }
                 }
             },
-            series: series_data
+            series: series_data,
+            tooltip: {
+                // pointFormat: '{point.country}',
+                formatter: function () {
+                    return get_str(this.point.x) + ', ' + this.point.z + ' vezes com ' + this.point.y + ' fatalidades';
+                },
+                followPointer: true
+            }
         });
     }
 
