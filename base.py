@@ -63,16 +63,19 @@ def get_hora_idx(columns):
         return columns.index('DATA_HORA')
 
 
-def generate_output_file(add_general_data, files, general_data, group_by_minutes, only_fatals, series):
+def generate_output_file(add_general_data, files, general_data, group_by_minutes, only_fatal, series, date_conds,
+                         ignore_weekday):
     if add_general_data:
         series.append(get_series_item(general_data, 'Geral'))
     output_name = \
         '__data=' + ','.join([x.split('/')[2][2:4] for x in files.keys()]) + \
         '__add_general_data=' + str(add_general_data) + \
         '__group_by_minutes=' + str(group_by_minutes) + \
-        '__only_fatals=' + str(only_fatals) + \
+        '__only_fatal=' + str(only_fatal) + \
+        '__date_conds=' + str(len(date_conds)) + \
+        '__ignore_weekday=' + str(ignore_weekday) + \
         '.json'
-    file_object = open(output_name, 'w')
+    file_object = open('res/' + output_name, 'w')
     json.dump({'series': series}, file_object)
 
 

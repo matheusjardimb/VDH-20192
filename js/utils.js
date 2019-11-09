@@ -9,6 +9,7 @@ const QUA = 3;
 const QUI = 4;
 const SEX = 5;
 const SAB = 6;
+const UNKNOWN = 7;
 
 // NOTES
 // week_day = int[0..6]
@@ -28,6 +29,7 @@ function week_day_to_str(week_day) {
     if (week_day === QUI) return 'Qui';
     if (week_day === SEX) return 'Sex';
     if (week_day === SAB) return 'Sab';
+    if (week_day === UNKNOWN) return '';
 }
 
 function get_idx(week_day, hour, min) {
@@ -40,7 +42,7 @@ function get_str(idx) {
     idx = Math.trunc(idx);
 
     const week_day = Math.trunc(idx / DAY_MIN);
-    if (week_day > SAB) return '--';
+    // if (week_day > SAB) return '--';
     const week_day_str = week_day_to_str(week_day);
 
     const aux_idx = idx - (week_day * DAY_MIN);
