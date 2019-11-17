@@ -68,12 +68,12 @@ def generate_output_file(add_general_data, files, general_data, group_by_minutes
     if add_general_data:
         series.append(get_series_item(general_data, 'Geral'))
     output_name = \
-        '__data=' + ','.join([x.split('/')[2][2:4] for x in files.keys()]) + \
+        '__years=' + ','.join([x[23:25] for x in files.keys()]) + \
         '__add_general_data=' + str(add_general_data) + \
         '__group_by_minutes=' + str(group_by_minutes) + \
         '__only_fatal=' + str(only_fatal) + \
-        '__date_conds=' + str(len(date_conds)) + \
         '__ignore_weekday=' + str(ignore_weekday) + \
+        '__date_conds=' + str(len(date_conds)) + \
         '.json'
     file_object = open('res/' + output_name, 'w')
     json.dump({'series': series}, file_object)
@@ -95,53 +95,4 @@ vehicles = {
     'CARROCA': [],
     'BICICLETA': [],
     'OUTRO': [],
-}
-
-data = {
-    '../dataset/2016/acidentes-2016.csv': [
-        'ID', 'LONGITUDE', 'LATITUDE', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR',
-        'DATA', 'DATA_HORA', 'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO',
-        'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA',
-        'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID',
-        'CONT_VIT', 'UPS', 'CONSORCIO', 'CORREDOR',
-    ],
-    '../dataset/2015/acidentes-2015.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
-        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
-        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
-        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
-        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
-    ],
-    '../dataset/2014/acidentes-2014.csv': [
-        'ID', 'LOCAL_VIA', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'QUEDA_ARR', 'DATA_HORA', 'DATA',
-        'DIA_SEM', 'HORA', 'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO',
-        'ONIBUS_URB', 'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO',
-        'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS',
-        'CONSORCIO', 'CORREDOR', 'LONGITUDE', 'LATITUDE',
-    ],
-    '../dataset/2013/acidentes-2013.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'QUEDA_ARR', 'DATA_HORA', 'DIA_SEM',
-        'FERIDOS', 'FERIDOS_GR', 'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB',
-        'ONIBUS_MET', 'ONIBUS_INT', 'CAMINHAO', 'MOTO', 'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA',
-        'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO', 'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'CONSORCIO',
-        'CORREDOR', 'LONGITUDE', 'LATITUDE',
-    ],
-    '../dataset/2012/acidentes-2012.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
-    '../dataset/2011/acidentes-2011.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
-    '../dataset/2010/acidentes-2010.csv': [
-        'ID', 'LOG1', 'LOG2', 'PREDIAL1', 'LOCAL', 'TIPO_ACID', 'LOCAL_VIA', 'DATA_HORA', 'DIA_SEM', 'FERIDOS',
-        'MORTES', 'MORTE_POST', 'FATAIS', 'AUTO', 'TAXI', 'LOTACAO', 'ONIBUS_URB', 'ONIBUS_INT', 'CAMINHAO', 'MOTO',
-        'CARROCA', 'BICICLETA', 'OUTRO', 'TEMPO', 'NOITE_DIA', 'FONTE', 'BOLETIM', 'REGIAO', 'DIA', 'MES', 'ANO',
-        'FX_HORA', 'CONT_ACID', 'CONT_VIT', 'UPS', 'LATITUDE', 'LONGITUDE',
-    ],
 }

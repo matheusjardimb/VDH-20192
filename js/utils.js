@@ -105,6 +105,10 @@ const input = document.getElementById("select_file");
 input.addEventListener("change", function () {
     if (this.files && this.files[0]) {
         const myFile = this.files[0];
+
+        const file_name_field = document.getElementById("file_name");
+        file_name_field.textContent = 'Arquivo: ' + myFile.name;
+
         const reader = new FileReader();
         reader.addEventListener('load', function (e) {
             const textContent = e.target.result;
