@@ -28,6 +28,7 @@ def generate_json(files, add_general_data, group_by_minutes, only_fatal, date_co
     series = []
     general_data = []
 
+    total_cond = 0
     total_fatal = 0
     for file_name, columns in files.items():
         invalid_row = 0
@@ -64,6 +65,8 @@ def generate_json(files, add_general_data, group_by_minutes, only_fatal, date_co
                     if not check_date_condition(DIA_idx, MES_idx, ANO_idx, date_conds, row):
                         continue
 
+                    total_cond += 1
+
                     if ' ' in time:
                         time = time.split(' ')[1]  # some csv have '20130101 02:10', so we're removing date
                     hour, minute = time.split(':')
@@ -86,6 +89,7 @@ def generate_json(files, add_general_data, group_by_minutes, only_fatal, date_co
             print('[%s-INFO] Invalid rows: %s' % (year, invalid_row))
 
         print('[%s-INFO] year_fatal: %s' % (year, year_fatal))
+        print('[%s-INFO] total_cond: %s' % (year, total_cond))
         print('')
 
     print('[INFO] total_fatal: %s' % total_fatal)
@@ -149,14 +153,14 @@ generate_json(
     add_general_data=True,  # whether should generate 'general' series
     group_by_minutes=60,  # group events by minutes; None disables it
     only_fatal=False,  # ignore non-fatal accidents
-    ignore_weekday=False,  # threats every data as the same weekday
+    ignore_weekday=True,  # threats every data as the same weekday
     date_conds=[
         # # Qualquer dia
-        {'day': None, 'month': None, 'year': None},
+        # {'day': None, 'month': None, 'year': None},
 
         # # Ano Novo
         # {'day': 1, 'month': 1, 'year': None},
-        #
+
         # # Dia dos Namorados
         # {'day': 12, 'month': 6, 'year': None},
         #
@@ -196,15 +200,15 @@ generate_json(
         # {'day': 9, 'month': 8, 'year': 2015},
         # {'day': 14, 'month': 8, 'year': 2016},
         #
-        # # Carnaval
-        # {'day': 16, 'month': 2, 'year': 2010},
-        # {'day': 8, 'month': 3, 'year': 2011},
-        # {'day': 21, 'month': 2, 'year': 2012},
-        # {'day': 12, 'month': 2, 'year': 2013},
-        # {'day': 4, 'month': 3, 'year': 2014},
-        # {'day': 17, 'month': 2, 'year': 2015},
-        # {'day': 9, 'month': 2, 'year': 2016},
-        #
+        # Carnaval
+        {'day': 16, 'month': 2, 'year': 2010},
+        {'day': 8, 'month': 3, 'year': 2011},
+        {'day': 21, 'month': 2, 'year': 2012},
+        {'day': 12, 'month': 2, 'year': 2013},
+        {'day': 4, 'month': 3, 'year': 2014},
+        {'day': 17, 'month': 2, 'year': 2015},
+        {'day': 9, 'month': 2, 'year': 2016},
+
         # # Paixao de Cristo/Pascoa
         # {'day': 4, 'month': 4, 'year': 2010},
         # {'day': 24, 'month': 4, 'year': 2011},
